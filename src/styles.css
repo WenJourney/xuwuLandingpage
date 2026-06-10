@@ -439,6 +439,7 @@ h3 {
 .section-title-cn {
   margin: 0;
   color: #231817;
+  font-family: var(--font-cn);
   font-size: clamp(28px, 3vw, 40px);
   font-weight: 300;
   letter-spacing: -0.04em;
@@ -468,7 +469,7 @@ h3 {
 .download {
   display: grid;
   justify-items: center;
-  gap: 36px;
+  gap: 0;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
@@ -476,6 +477,15 @@ h3 {
 .download-copy {
   width: min(100%, 680px);
   justify-self: start;
+}
+
+.download-copy .eyebrow {
+  color: var(--brand);
+}
+
+.download-note {
+  margin: 10px 0 0 4px;
+  color: #001012;
 }
 
 .qr-placeholders {
@@ -495,45 +505,17 @@ h3 {
 }
 
 .qr-pattern {
-  position: relative;
   width: clamp(118px, 16vw, 164px);
   aspect-ratio: 1;
-  border: 1px solid rgba(37, 34, 29, 0.18);
-  border-radius: 10px;
-  background:
-    linear-gradient(90deg, #25221d 10px, transparent 10px 18px, #25221d 18px 28px, transparent 28px 38px),
-    linear-gradient(#25221d 10px, transparent 10px 18px, #25221d 18px 28px, transparent 28px 38px),
-    #fffdf8;
-  background-size: 38px 38px;
-  box-shadow: 0 14px 34px rgba(57, 47, 36, 0.08);
-}
-
-.qr-pattern::before,
-.qr-pattern::after {
-  content: "";
-  position: absolute;
-  width: 34%;
-  aspect-ratio: 1;
-  border: 8px solid #25221d;
-  border-radius: 4px;
-  background: #fffdf8;
-}
-
-.qr-pattern::before {
-  top: 12px;
-  left: 12px;
-}
-
-.qr-pattern::after {
-  right: 12px;
-  bottom: 12px;
+  border: 1px solid rgba(37, 34, 29, 0.08);
+  border-radius: 8px;
+  background: #f1f0ed;
 }
 
 .contact-list {
   gap: 26px;
   flex-wrap: wrap;
-  padding-top: 24px;
-  border-top: 1px solid var(--line);
+  color: #001012;
 }
 
 .site-footer {

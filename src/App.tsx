@@ -293,9 +293,9 @@ function Download() {
         <div className="section-title-block">
           <p className="eyebrow">Mobile app</p>
           <h2 className="section-title-cn">下载序物 App</h2>
+          <p className="download-note">打开手机相机，扫描二维码到应用商店下载序物App</p>
         </div>
-        <p>保存你的日常清单。</p>
-        <p>后续可在此接入二维码、应用商店按钮、手机模型滚动视差或下载数据动画。</p>
+        
       </div>
       <div className="qr-placeholders" aria-label="下载二维码占位图">
         <div className="qr-card">
@@ -307,14 +307,7 @@ function Download() {
           <span>Android</span>
         </div>
       </div>
-      <div className="download-actions">
-        <a className="button primary" href="#" aria-label="下载 iOS 应用">
-          iOS 下载
-        </a>
-        <a className="button secondary" href="#" aria-label="下载 Android 应用">
-          Android 下载
-        </a>
-      </div>
+      
     </section>
   );
 }
@@ -329,7 +322,7 @@ function Contact() {
       <div className="contact-list">
         <a href="mailto:hello@example.com">hello@example.com</a>
         <span>工作日 10:00 - 18:00</span>
-        <span>上海市静安区生活方式实验室</span>
+        <span>50 Prince Andrew Pl, North York, ON M3C 2H4</span>
       </div>
     </section>
   );

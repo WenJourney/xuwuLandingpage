@@ -3,99 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>素集 | 简约生活电商</title>
+    <title>序物 | 简约生活电商</title>
     <meta
       name="description"
-      content="素集是一家面向日常生活的简约电商，提供家居、衣物、收纳与生活小物。"
+      content="序物是一家面向日常生活的简约电商，提供家居、衣物、收纳与生活小物。"
     />
-    <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <header class="site-header" data-motion="header">
-      <a class="brand" href="#top" aria-label="产品首页">
-        <img src="./assets/logo.png" alt="产品 logo" class="brand-logo" />
-      </a>
-
-      <nav class="nav" aria-label="主导航">
-        <a href="#about">关于我们</a>
-        <a href="#contact">联系我们</a>
-        <a class="nav-download" href="#download">下载</a>
-      </nav>
-    </header>
-
-    <main id="top">
-      <section class="hero section-band" data-motion="hero">
-        <div class="hero-content">
-          <p class="eyebrow">Simple goods for everyday living</p>
-          <h1>把日常用品，做得安静、耐用、刚刚好。</h1>
-          <p class="hero-copy">
-            从家居收纳到贴身衣物，素集用克制的设计、自然的材质和透明的价格，
-            帮你整理出更舒服的生活秩序。
-          </p>
-          <div class="hero-actions">
-            <a class="button primary" href="#download">下载应用</a>
-            <a class="button secondary" href="#about">了解品牌</a>
-          </div>
-        </div>
-
-        <div class="hero-visual" aria-label="简约生活商品陈列" data-motion-slot="hero-product-scene">
-          <div class="product-stage">
-            <div class="linen-card"></div>
-            <div class="product-box large"></div>
-            <div class="product-box small"></div>
-            <div class="product-tag">NEW SEASON</div>
-          </div>
-        </div>
-      </section>
-
-      <section id="about" class="section about" data-motion="about">
-        <div class="section-heading">
-          <p class="eyebrow">About us</p>
-          <h2>少一点装饰，多一点使用的安心。</h2>
-        </div>
-        <div class="about-grid">
-          <p>
-            我们关注那些每天都会被触碰的物件：一只杯子、一件衬衫、一个收纳盒。
-            设计不抢眼，但经得起反复使用。
-          </p>
-          <p>
-            页面后续可以在这里接入品牌故事滚动动效、材质细节图片、或商品卡片的渐入组件。
-          </p>
-        </div>
-      </section>
-
-      <section id="download" class="section download" data-motion="download">
-        <div>
-          <p class="eyebrow">Mobile app</p>
-          <h2>下载素集 App，保存你的日常清单。</h2>
-          <p>
-            后续可在此接入二维码、应用商店按钮、手机模型滚动视差或下载数据动画。
-          </p>
-        </div>
-        <div class="download-actions">
-          <a class="button primary" href="#" aria-label="下载 iOS 应用">iOS 下载</a>
-          <a class="button secondary" href="#" aria-label="下载 Android 应用">Android 下载</a>
-        </div>
-      </section>
-
-      <section id="contact" class="section contact" data-motion="contact">
-        <div class="section-heading compact">
-          <p class="eyebrow">Contact</p>
-          <h2>联系我们</h2>
-        </div>
-        <div class="contact-list">
-          <a href="mailto:hello@example.com">hello@example.com</a>
-          <span>工作日 10:00 - 18:00</span>
-          <span>上海市静安区生活方式实验室</span>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <span>© 2026 素集</span>
-      <span>Plain, useful, long-lasting.</span>
-    </footer>
-
-    <script src="./script.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

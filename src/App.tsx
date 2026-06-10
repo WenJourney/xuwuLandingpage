@@ -144,6 +144,19 @@ function getResponsivePhoneOffsets(width: number, height: number, gapMultiplier 
     : getPhoneOffsets(phoneWidth, edgeGap);
 }
 
+function getPhoneRevealDistance(width: number, height: number) {
+  const layoutWidth = Math.max(width, MIN_LAYOUT_WIDTH);
+
+  if (layoutWidth <= 480) return clamp(height * 0.32, 190, 270);
+  if (layoutWidth <= 640) return clamp(height * 0.53, 220, 320);
+  if (layoutWidth <= 920) return clamp(height * 0.55, 180, 410);
+  if (layoutWidth <= 1200) return clamp(height * 0.35, 100, 700);
+  if (layoutWidth <= 2000) return clamp(height * 0.41, 100, 700);
+
+
+  return clamp(height * 0.5, 380, 560);
+}
+
 function AppIcon() {
   return (
     <motion.div
@@ -171,30 +184,13 @@ function Hero() {
     target: heroRef,
     offset: ["start start", "end start"],
   });
-  const phoneFastY = useTransform(scrollYProgress, [0, 0.72, 1], [0, -260, -260]);
+  const phoneRevealDistance = getPhoneRevealDistance(viewport.width, viewport.height);
+  const phoneRevealY = useTransform(scrollYProgress, [0, 0.6, 1], [phoneRevealDistance, 0, 0]);
+  const heroMotionOpacity = useTransform(scrollYProgress, [0.01, 0.50], [1, 0]);
 
   useEffect(() => {
-    const updateHeroOpacity = () => {
-      const hero = heroRef.current;
-      if (!hero) return;
-
-      const heroTop = window.scrollY + hero.getBoundingClientRect().top;
-      const lockDistance = Math.max(hero.offsetHeight - window.innerHeight, 1);
-      const progress = Math.min(Math.max((window.scrollY - heroTop) / lockDistance, 0), 1);
-      const fadeProgress = Math.min(Math.max((progress - 0.5) / 0.18, 0), 1);
-
-      setHeroContentOpacity(1 - fadeProgress);
-    };
-
-    updateHeroOpacity();
-    window.addEventListener("scroll", updateHeroOpacity, { passive: true });
-    window.addEventListener("resize", updateHeroOpacity);
-
-    return () => {
-      window.removeEventListener("scroll", updateHeroOpacity);
-      window.removeEventListener("resize", updateHeroOpacity);
-    };
-  }, []);
+    return heroMotionOpacity.on("change", setHeroContentOpacity);
+  }, [heroMotionOpacity]);
 
   useEffect(() => {
     const updatePhoneOffsets = () => {
@@ -237,7 +233,7 @@ function Hero() {
           </motion.div>
         </motion.div>
 
-        <motion.div className="phone-stage" style={{ y: phoneFastY }} aria-label="App screen previews">
+        <motion.div className="phone-stage" style={{ y: phoneRevealY }} aria-label="App screen previews">
           {visiblePhoneItems.map((phone, index) => (
             <motion.div
               className="phone-shell"

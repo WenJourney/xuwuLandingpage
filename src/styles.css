@@ -16,7 +16,7 @@
   --section-y: 96px;
   --section-x: 64px;
   --section-max: 1180px;
-  --hero-lock-height: 125vh;
+  --hero-lock-height: 228vh;
   --hero-sticky-top: clamp(124px, 18vh, 202px);
   --hero-content-offset: clamp(72px, 10vw, 180px);
   --hero-title-size: clamp(40px, min(4.35vw, 7.6vh), 64px);
@@ -27,7 +27,7 @@
   --phone-stage-width: min(100vw, 1580px);
   --phone-stage-height: min(60vh, 600px);
   --phone-width: clamp(220px, min(17vw, 36vh), 330px);
-  --phone-bottom: -270px;
+  --phone-bottom: 50px;
   --about-title-size: clamp(40px, 5.4vw, 82px);
   --about-copy-size: clamp(16px, 1.25vw, 21px);
   font-family:
@@ -582,7 +582,7 @@ h3 {
     --phone-stage-width: min(100vw, 1680px);
     --phone-stage-height: min(62vh, 640px);
     --phone-width: clamp(290px, min(15vw, 38vh), 350px);
-    --phone-bottom: -270px;
+    --phone-bottom: 50px;
   }
 }
 
@@ -595,11 +595,11 @@ h3 {
     --hero-sticky-top: clamp(140px, 17vh, 188px);
     --hero-content-offset: clamp(24px, 5vw, 72px);
     --hero-title-size: clamp(40px, min(5.1vw, 7.2vh), 58px);
-    --hero-copy-cn-size: clamp(180deg, min(2.5vw, 3.2vh), 27px);
+    --hero-copy-cn-size: clamp(18px, min(2.5vw, 3.2vh), 27px);
     --app-icon-size: clamp(48px, min(4.2vw, 6.3vh), 55px);
     --phone-stage-height: min(58vh, 540px);
     --phone-width: clamp(205px, min(21vw, 34vh), 290px);
-    --phone-bottom: -285px;
+    --phone-bottom: 50px;
     --about-title-size: clamp(38px, 5vw, 64px);
     --about-copy-size: clamp(16px, 1.45vw, 19px);
   }
@@ -611,7 +611,7 @@ h3 {
     --section-y: 76px;
     --section-x: 24px;
     --section-max: 100%;
-    --hero-lock-height: 128vh;
+    --hero-lock-height: 160vh;
     --hero-sticky-top: clamp(118px, 18vh, 170px);
     --hero-content-offset: 0px;
     --hero-title-size: clamp(36px, min(7.6vw, 7.8vh), 56px);
@@ -621,7 +621,7 @@ h3 {
     --app-icon-size: clamp(45px, min(5.6vw, 6.3vh), 53px);
     --phone-stage-height: min(52vh, 460px);
     --phone-width: clamp(170px, min(31vw, 31vh), 235px);
-    --phone-bottom: -245px;
+    --phone-bottom: 50px;
     --about-title-size: clamp(34px, 7vw, 52px);
     --about-copy-size: clamp(16px, 2.2vw, 18px);
   }
@@ -692,7 +692,7 @@ h3 {
     --section-y: 64px;
     --section-x: 18px;
     --section-max: 100%;
-    --hero-lock-height: 124vh;
+    --hero-lock-height: 146vh;
     --hero-sticky-top: 116px;
     --hero-title-size: clamp(32px, 10.2vw, 42px);
     --hero-kicker-size: 15px;
@@ -702,7 +702,7 @@ h3 {
     --phone-stage-width: min(100vw, 540px);
     --phone-stage-height: 340px;
     --phone-width: clamp(142px, 38vw, 178px);
-    --phone-bottom: -168px;
+    --phone-bottom: 40px;
     --about-title-size: clamp(32px, 10vw, 44px);
     --about-copy-size: 16px;
   }
@@ -793,7 +793,7 @@ h3 {
     --hero-copy-cn-size: clamp(17px, 5.2vw, 21px);
     --phone-stage-height: 320px;
     --phone-width: clamp(132px, 40vw, 156px);
-    --phone-bottom: -158px;
+    --phone-bottom: 36px;
   }
 
   .hero-app-title span {
@@ -816,7 +816,7 @@ h3 {
     --hero-kicker-size: clamp(17px, min(1.35vw, 2vh), 20px);
     --hero-copy-cn-size: clamp(20px, min(1.85vw, 2.8vh), 27px);
     --phone-stage-height: min(56vh, 610px);
-    --phone-bottom: calc(-1 * clamp(220px, 24vh, 290px));
+    --phone-bottom: 50px;
   }
 }
 
@@ -829,7 +829,7 @@ h3 {
     --hero-copy-en-size: clamp(14px, min(1.25vw, 2.2vh), 17px);
     --app-icon-size: clamp(39px, min(3.9vw, 5.6vh), 50px);
     --phone-stage-height: min(48vh, 410px);
-    --phone-bottom: calc(-1 * clamp(170px, 28vh, 220px));
+    --phone-bottom: 44px;
   }
 
   .hero-kicker {
@@ -847,6 +847,6 @@ h3 {
     --hero-title-size: clamp(28px, 9vw, 34px);
     --app-icon-size: 38px;
     --phone-stage-height: 300px;
-    --phone-bottom: -142px;
+    --phone-bottom: 32px;
   }
 }

@@ -11,7 +11,6 @@
   --shadow: 0 18px 60px rgba(57, 47, 36, 0.12);
   --font-en: "Montserrat", "Helvetica Neue", Arial, sans-serif;
   --font-cn: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
-  --layout-min-width: 390px;
   --page-x: clamp(24px, 7vw, 120px);
   --section-y: 96px;
   --section-x: 64px;
@@ -24,7 +23,7 @@
   --hero-copy-cn-size: clamp(20px, min(1.95vw, 3vh), 28px);
   --hero-copy-en-size: clamp(16px, min(1.35vw, 2.3vh), 20px);
   --app-icon-size: clamp(50px, min(4.8vw, 7vh), 57px);
-  --phone-stage-width: min(100vw, 1580px);
+  --phone-stage-width: min(100%, 1580px);
   --phone-stage-height: min(60vh, 600px);
   --phone-width: clamp(220px, min(17vw, 36vh), 330px);
   --phone-bottom: 50px;
@@ -47,15 +46,10 @@ html {
 
 body {
   margin: 0;
-  min-width: var(--layout-min-width);
   font-family:
     var(--font-en),
     var(--font-cn);
   background: #ffffff;
-}
-
-#root {
-  min-width: var(--layout-min-width);
 }
 
 button,
@@ -493,7 +487,7 @@ h3 {
     --hero-title-size: clamp(52px, min(3.3vw, 6.9vh), 66px);
     --hero-copy-en-size: clamp(18px, min(2.7vw, 2.2vh), 16px);
     --app-icon-size: clamp(55px, min(3.7vw, 6.3vh), 62px);
-    --phone-stage-width: min(100vw, 1680px);
+    --phone-stage-width: min(100%, 1680px);
     --phone-stage-height: min(62vh, 640px);
     --phone-width: clamp(290px, min(15vw, 38vh), 350px);
     --phone-bottom: 50px;
@@ -612,7 +606,7 @@ h3 {
     --hero-copy-cn-size: clamp(18px, 5.6vw, 23px);
     --hero-copy-en-size: 15px;
     --app-icon-size: 43px;
-    --phone-stage-width: min(100vw, 540px);
+    --phone-stage-width: min(100%, 540px);
     --phone-stage-height: 340px;
     --phone-width: clamp(142px, 38vw, 178px);
     --phone-bottom: 40px;
@@ -674,6 +668,15 @@ h3 {
     letter-spacing: -0.05em;
   }
 
+  .hero-app-title span {
+    white-space: normal;
+  }
+
+  .hero-glass-decor {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
   .hero-kicker {
     margin-bottom: 30px;
   }
@@ -684,6 +687,12 @@ h3 {
 
   .about-copy {
     gap: 22px;
+  }
+
+  .contact-list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
   }
 
   .site-footer {
@@ -704,11 +713,6 @@ h3 {
     --phone-width: clamp(132px, 40vw, 156px);
     --phone-bottom: 36px;
   }
-
-  .hero-app-title span {
-    white-space: normal;
-  }
-
 }
 
 @media (min-height: 900px) and (min-width: 641px) {

@@ -88,8 +88,6 @@ a {
 .brand,
 .nav,
 .nav-surface,
-.hero-actions,
-.download-actions,
 .contact-list {
   display: flex;
   align-items: center;
@@ -161,10 +159,6 @@ a {
 
 .nav-cta:hover {
   background: #680113;
-}
-
-.section-band {
-  border-bottom: 1px solid var(--line);
 }
 
 .hero {
@@ -349,7 +343,6 @@ h3 {
   font-weight: 500;
 }
 
-.hero-copy,
 .about-copy,
 .download p,
 .contact-list,
@@ -358,72 +351,11 @@ h3 {
   line-height: 1.8;
 }
 
-.hero-copy {
-  max-width: 620px;
-  margin-bottom: 36px;
-  font-size: 18px;
-}
-
-.hero-actions,
-.download-actions {
-  gap: 14px;
-  flex-wrap: wrap;
-}
-
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 46px;
-  padding: 0 24px;
-  border-radius: 8px;
-  border: 1px solid var(--ink);
-  font-size: 14px;
-  transition:
-    background 180ms ease,
-    border-color 180ms ease,
-    color 180ms ease;
-}
-
-.button:hover {
-  background: #680113;
-  border-color: #680113;
-}
-
-.button.primary {
-  color: var(--white);
-  border-color: #7f0218;
-  background: #7f0218;
-}
-
-.button.secondary {
-  color: var(--ink);
-  background: transparent;
-}
-
-.button.secondary:hover {
-  color: #7f0218;
-  background: rgba(127, 2, 24, 0.06);
-  border-color: #7f0218;
-}
-
 .section {
   width: min(100%, var(--section-max));
   margin-right: auto;
   margin-left: auto;
   padding: var(--section-y) var(--section-x);
-}
-
-.section-heading {
-  display: grid;
-  grid-template-columns: minmax(240px, 0.45fr) minmax(0, 1fr);
-  gap: 48px;
-  margin-bottom: 42px;
-}
-
-.section-heading.compact {
-  display: block;
-  max-width: 680px;
 }
 
 .about {
@@ -619,7 +551,6 @@ h3 {
   }
 
   .hero,
-  .section-heading,
   .download {
     grid-template-columns: 1fr;
   }
@@ -724,10 +655,6 @@ h3 {
     font-weight: 600;
   }
 
-  .nav-download {
-    padding: 8px 12px;
-  }
-
   h1 {
     font-size: 38px;
   }
@@ -782,13 +709,6 @@ h3 {
     white-space: normal;
   }
 
-  .download-actions {
-    width: 100%;
-  }
-
-  .download-actions .button {
-    flex: 1 1 100%;
-  }
 }
 
 @media (min-height: 900px) and (min-width: 641px) {

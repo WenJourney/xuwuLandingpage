@@ -412,6 +412,7 @@ h3 {
 .download-note {
   margin: 10px 0 0 4px;
   color: #001012;
+  font-size: 15px;
 }
 
 .qr-placeholders {
@@ -442,6 +443,7 @@ h3 {
   gap: 26px;
   flex-wrap: wrap;
   color: #001012;
+  font-size: 15px;
 }
 
 .site-footer {
@@ -599,7 +601,7 @@ h3 {
     --section-y: 64px;
     --section-x: 18px;
     --section-max: 100%;
-    --hero-lock-height: 146vh;
+    --hero-lock-height: 65vh;
     --hero-sticky-top: 116px;
     --hero-title-size: clamp(32px, 10.2vw, 42px);
     --hero-kicker-size: 15px;
@@ -609,9 +611,13 @@ h3 {
     --phone-stage-width: min(100%, 540px);
     --phone-stage-height: 340px;
     --phone-width: clamp(142px, 38vw, 178px);
-    --phone-bottom: 40px;
+    --phone-bottom: 140px;
     --about-title-size: clamp(32px, 10vw, 44px);
     --about-copy-size: 16px;
+  }
+
+  .hero-sticky {
+    min-height: 65svh;
   }
 
   .site-header {
@@ -711,7 +717,7 @@ h3 {
     --hero-copy-cn-size: clamp(17px, 5.2vw, 21px);
     --phone-stage-height: 320px;
     --phone-width: clamp(132px, 40vw, 156px);
-    --phone-bottom: 36px;
+    --phone-bottom: 136px;
   }
 }
 
@@ -754,5 +760,19 @@ h3 {
     --app-icon-size: 38px;
     --phone-stage-height: 300px;
     --phone-bottom: 32px;
+  }
+}
+
+/* 竖屏 / 偏方 / iPad 横屏(宽高比 ≤ 3:2)的大屏:Hero 缩短 + 手机露出 */
+@media (min-width: 641px) and (max-aspect-ratio: 3 / 2) {
+  :root {
+    --hero-lock-height: 65vh;
+    --phone-bottom: 0px;
+    --hero-sticky-top: clamp(80px, 10vh, 150px);
+    --hero-title-size: clamp(30px, 4.2vw, 50px);
+  }
+
+  .hero-sticky {
+    min-height: 65svh;
   }
 }

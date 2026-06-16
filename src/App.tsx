@@ -126,7 +126,7 @@ function getPhoneOffsets(phoneWidth: number, edgeGap: number) {
 }
 
 function getMobilePhoneOffsets(phoneWidth: number, edgeGap: number) {
-  const offset = phoneWidth * 0.42 + edgeGap;
+  const offset = phoneWidth * 0.50 + edgeGap;
 
   return [-offset, offset];
 }
@@ -146,6 +146,19 @@ function getResponsivePhoneOffsets(width: number, height: number, gapMultiplier 
 
 function getPhoneRevealDistance(width: number, height: number) {
   const layoutWidth = Math.max(width, MIN_LAYOUT_WIDTH);
+
+  // 偏方/竖屏大屏(>640 且 宽高比 ≤ 4/3):首屏直接露出手机。
+  // CSS 已把 --phone-bottom 归零,这里按 65vh 的 Hero 让手机顶精确落在 ~73% 处,
+  // 不随宽度断点漂移(phoneHeight 由手机实际宽高比 882/433 推出)。
+  if (width > 640 && width <= (height * 3) / 2) {
+    const hero = height * 0.65;
+    const phoneHeight = getResponsivePhoneWidth(width, height) * (882 / 433);
+    // 手机顶在 Hero 中的目标位置随宽高比插值:越扁(宽屏)越靠上露出越多,
+    // 越瘦(竖屏)越靠下露出越少,避免在竖屏上盖住标题。
+    const aspect = width / height;
+    const topPct = clamp(0.73 - (aspect - 0.75) * 0.26, 0.58, 0.73);
+    return phoneHeight - (1 - topPct) * hero;
+  }
 
   if (layoutWidth <= 480) return clamp(height * 0.32, 190, 270);
   if (layoutWidth <= 640) return clamp(height * 0.53, 220, 320);

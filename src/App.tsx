@@ -80,6 +80,12 @@ function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);
 }
 
+// 竖屏偏方(含 iPad 竖屏):宽 > 640、高 ≥ 宽、且宽高比 ≤ 3/2。沿用 65vh 短 hero + 手机露出。
+// 横向矮屏(宽>高 的偏方)不再特殊处理,落回正常宽度档,手机像其它尺寸一样只露一截。
+function isPortraitSquarish(width: number, height: number) {
+  return width > 640 && height >= width && width <= (height * 3) / 2;
+}
+
 function getResponsivePhoneWidth(width: number, height: number) {
   const layoutWidth = Math.max(width, MIN_LAYOUT_WIDTH);
 
@@ -87,12 +93,14 @@ function getResponsivePhoneWidth(width: number, height: number) {
     return clamp(Math.min(layoutWidth * 0.15, height * 0.38), 290, 350);
   }
 
-  if (layoutWidth <= 480) {
+  if (layoutWidth < 400) {
+    // 320–399:hero 500px,小手机。
     return clamp(layoutWidth * 0.4, 132, 156);
   }
 
   if (layoutWidth <= 640) {
-    return clamp(layoutWidth * 0.38, 142, 178);
+    // 400–640:hero 600px,手机更大(封顶 185)。与 CSS 的 43vw 同步。
+    return clamp(layoutWidth * 0.43, 168, 185);
   }
 
   if (layoutWidth <= 920) {
@@ -147,27 +155,25 @@ function getResponsivePhoneOffsets(width: number, height: number, gapMultiplier 
 function getPhoneRevealDistance(width: number, height: number) {
   const layoutWidth = Math.max(width, MIN_LAYOUT_WIDTH);
 
-  // 偏方/竖屏大屏(>640 且 宽高比 ≤ 4/3):首屏直接露出手机。
-  // CSS 已把 --phone-bottom 归零,这里按 65vh 的 Hero 让手机顶精确落在 ~73% 处,
-  // 不随宽度断点漂移(phoneHeight 由手机实际宽高比 882/433 推出)。
-  if (width > 640 && width <= (height * 3) / 2) {
+  // 竖屏偏方(iPad 竖屏等):首屏直接露出手机。CSS 已把 --phone-bottom 归零,
+  // 按 65vh 的 Hero 让手机顶精确落在 ~73% 处,phoneHeight 由手机宽高比 882/433 推出。
+  if (isPortraitSquarish(width, height)) {
     const hero = height * 0.65;
     const phoneHeight = getResponsivePhoneWidth(width, height) * (882 / 433);
-    // 手机顶在 Hero 中的目标位置随宽高比插值:越扁(宽屏)越靠上露出越多,
-    // 越瘦(竖屏)越靠下露出越少,避免在竖屏上盖住标题。
     const aspect = width / height;
     const topPct = clamp(0.73 - (aspect - 0.75) * 0.26, 0.58, 0.73);
     return phoneHeight - (1 - topPct) * hero;
   }
 
-  if (layoutWidth <= 480) return clamp(height * 0.32, 190, 270);
-  if (layoutWidth <= 640) return clamp(height * 0.53, 220, 320);
+  // 手机档 hero 已是固定高度(500/600px),露出量 = 手机底距 + 手机高 − 露出距离,
+  // 与视口高度无关,故用常数。值越大手机露出越少(只从底部探出约 100px)。
+  if (layoutWidth < 400) return 260;
+  if (layoutWidth <= 640) return 300;
+  // 标准全屏 hero(随视口缩放):沿用统一宽度阶梯 920/1200/(>1200)。
   if (layoutWidth <= 920) return clamp(height * 0.55, 180, 410);
   if (layoutWidth <= 1200) return clamp(height * 0.35, 100, 700);
-  if (layoutWidth <= 2000) return clamp(height * 0.41, 100, 700);
 
-
-  return clamp(height * 0.5, 380, 560);
+  return clamp(height * 0.41, 100, 700);
 }
 
 function AppIcon() {

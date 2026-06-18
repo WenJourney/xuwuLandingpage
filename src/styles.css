@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+/* ============================================================
+   断点阶梯(唯一标准 — CSS 与 App.tsx 共用,勿擅自新增其它阈值)
+   宽度:  ≤480 / ≤640 / ≤920 / ≤1200 / ≥1600  (640 = 双列↔单列、5↔2 台手机分界)
+   高度:  ≤720 矮屏  /  ≥900 高屏  (均需配合 min-width:641)
+   首屏:  手机档固定高度(不随视口伸缩):320–399 → 500px + 小手机;400–640 → 600px + 大手机
+          (手机尺寸/露出分界也对齐到 400,见 App.tsx)
+   Hero:  竖屏偏方(aspect≤3/2 且 orientation:portrait) → 短 65vh hero + 手机露出
+          横向矮屏(aspect≤3/2 且 宽>高)              → 整屏 hero + 手机正常露出(落回宽度档)
+          其余                                        → 整屏 hero
+   ============================================================ */
+
 :root {
   --paper: #ffffff;
   --paper-deep: #ebe5d9;
@@ -18,7 +29,7 @@
   --hero-lock-height: 228vh;
   --hero-sticky-top: clamp(124px, 18vh, 202px);
   --hero-content-offset: clamp(72px, 10vw, 180px);
-  --hero-title-size: clamp(40px, min(4.35vw, 7.6vh), 64px);
+  --hero-title-size: clamp(48px, min(5.1vw, 8.2vh), 76px);
   --hero-kicker-size: clamp(16px, min(1.35vw, 2.2vh), 20px);
   --hero-copy-cn-size: clamp(20px, min(1.95vw, 3vh), 28px);
   --hero-copy-en-size: clamp(16px, min(1.35vw, 2.3vh), 20px);
@@ -40,16 +51,24 @@
   box-sizing: border-box;
 }
 
+/* 最小适配宽度 320px:整个文档的宽度下限就是 320。
+   视口窄于 320 时,文档横向溢出 → 出现横向滚动条,内容保持 320 布局,不再压缩。 */
 html {
   scroll-behavior: smooth;
+  min-width: 320px;
 }
 
 body {
   margin: 0;
+  min-width: 320px;
   font-family:
     var(--font-en),
     var(--font-cn);
   background: #ffffff;
+}
+
+#root {
+  min-width: 320px;
 }
 
 button,
@@ -483,16 +502,14 @@ h3 {
 @media (min-width: 1600px) {
   :root {
     --page-x: 120px;
-    --section-max: 1180px;
     --hero-sticky-top: clamp(168px, 19vh, 228px);
     --hero-content-offset: clamp(150px, 9vw, 220px);
-    --hero-title-size: clamp(52px, min(3.3vw, 6.9vh), 66px);
+    --hero-title-size: clamp(58px, min(3.9vw, 7.4vh), 82px);
     --hero-copy-en-size: clamp(18px, min(2.7vw, 2.2vh), 16px);
     --app-icon-size: clamp(55px, min(3.7vw, 6.3vh), 62px);
     --phone-stage-width: min(100%, 1680px);
     --phone-stage-height: min(62vh, 640px);
     --phone-width: clamp(290px, min(15vw, 38vh), 350px);
-    --phone-bottom: 50px;
   }
 }
 
@@ -504,12 +521,11 @@ h3 {
     --section-max: 1080px;
     --hero-sticky-top: clamp(140px, 17vh, 188px);
     --hero-content-offset: clamp(24px, 5vw, 72px);
-    --hero-title-size: clamp(40px, min(5.1vw, 7.2vh), 58px);
+    --hero-title-size: clamp(46px, min(5.9vw, 8vh), 70px);
     --hero-copy-cn-size: clamp(18px, min(2.5vw, 3.2vh), 27px);
     --app-icon-size: clamp(48px, min(4.2vw, 6.3vh), 55px);
     --phone-stage-height: min(58vh, 540px);
     --phone-width: clamp(205px, min(21vw, 34vh), 290px);
-    --phone-bottom: 50px;
     --about-title-size: clamp(38px, 5vw, 64px);
     --about-copy-size: clamp(16px, 1.45vw, 19px);
   }
@@ -524,14 +540,13 @@ h3 {
     --hero-lock-height: 160vh;
     --hero-sticky-top: clamp(118px, 18vh, 170px);
     --hero-content-offset: 0px;
-    --hero-title-size: clamp(36px, min(7.6vw, 7.8vh), 56px);
+    --hero-title-size: clamp(40px, min(8.4vw, 8.6vh), 64px);
     --hero-kicker-size: clamp(15px, min(2.5vw, 2.3vh), 18px);
     --hero-copy-cn-size: clamp(19px, min(3.8vw, 3.2vh), 26px);
     --hero-copy-en-size: clamp(15px, min(2.7vw, 2.2vh), 16px);
     --app-icon-size: clamp(45px, min(5.6vw, 6.3vh), 53px);
     --phone-stage-height: min(52vh, 460px);
     --phone-width: clamp(170px, min(31vw, 31vh), 235px);
-    --phone-bottom: 50px;
     --about-title-size: clamp(34px, 7vw, 52px);
     --about-copy-size: clamp(16px, 2.2vw, 18px);
   }
@@ -601,7 +616,7 @@ h3 {
     --section-y: 64px;
     --section-x: 18px;
     --section-max: 100%;
-    --hero-lock-height: 65vh;
+    --hero-lock-height: 500px;
     --hero-sticky-top: 116px;
     --hero-title-size: clamp(32px, 10.2vw, 42px);
     --hero-kicker-size: 15px;
@@ -611,13 +626,13 @@ h3 {
     --phone-stage-width: min(100%, 540px);
     --phone-stage-height: 340px;
     --phone-width: clamp(142px, 38vw, 178px);
-    --phone-bottom: 140px;
+    --phone-bottom: 40px;
     --about-title-size: clamp(32px, 10vw, 44px);
     --about-copy-size: 16px;
   }
 
   .hero-sticky {
-    min-height: 65svh;
+    min-height: 500px;
   }
 
   .site-header {
@@ -717,25 +732,37 @@ h3 {
     --hero-copy-cn-size: clamp(17px, 5.2vw, 21px);
     --phone-stage-height: 320px;
     --phone-width: clamp(132px, 40vw, 156px);
-    --phone-bottom: 136px;
+    --phone-bottom: 40px;
+  }
+}
+
+/* 手机档内再切一刀:宽 ≥ 400(到 640)首屏锁定 600px、手机更大;320–399 为 500px + 小手机。
+   --phone-width 的 43vw 与 App.tsx getResponsivePhoneWidth 的 0.43 同步。 */
+@media (min-width: 400px) and (max-width: 640px) {
+  :root {
+    --hero-lock-height: 600px;
+    --phone-width: clamp(168px, 43vw, 185px);
+  }
+
+  .hero-sticky {
+    min-height: 600px;
   }
 }
 
 @media (min-height: 900px) and (min-width: 641px) {
   :root {
     --hero-sticky-top: clamp(176px, 20vh, 238px);
-    --hero-title-size: clamp(48px, min(4vw, 6.8vh), 64px);
+    --hero-title-size: clamp(54px, min(4.7vw, 7.4vh), 76px);
     --hero-kicker-size: clamp(17px, min(1.35vw, 2vh), 20px);
     --hero-copy-cn-size: clamp(20px, min(1.85vw, 2.8vh), 27px);
     --phone-stage-height: min(56vh, 610px);
-    --phone-bottom: 50px;
   }
 }
 
 @media (max-height: 720px) and (min-width: 641px) {
   :root {
     --hero-sticky-top: clamp(96px, 14vh, 120px);
-    --hero-title-size: clamp(32px, min(4.4vw, 7.1vh), 58px);
+    --hero-title-size: clamp(38px, min(5vw, 7.8vh), 66px);
     --hero-kicker-size: 15px;
     --hero-copy-cn-size: clamp(18px, min(2.1vw, 3vh), 24px);
     --hero-copy-en-size: clamp(14px, min(1.25vw, 2.2vh), 17px);
@@ -759,20 +786,22 @@ h3 {
     --hero-title-size: clamp(28px, 9vw, 34px);
     --app-icon-size: 38px;
     --phone-stage-height: 300px;
-    --phone-bottom: 32px;
+    /* --phone-bottom 沿用手机档的 40px,不再随 720 跳变 */
   }
 }
 
-/* 竖屏 / 偏方 / iPad 横屏(宽高比 ≤ 3:2)的大屏:Hero 缩短 + 手机露出 */
-@media (min-width: 641px) and (max-aspect-ratio: 3 / 2) {
+/* 竖屏 / iPad 竖屏(宽高比 ≤ 3:2 且竖向):Hero 缩短 + 手机露出。
+   横向矮屏(宽>高)不走这里,保持默认整屏 hero。 */
+@media (min-width: 641px) and (max-aspect-ratio: 3 / 2) and (orientation: portrait) {
   :root {
     --hero-lock-height: 65vh;
     --phone-bottom: 0px;
     --hero-sticky-top: clamp(80px, 10vh, 150px);
-    --hero-title-size: clamp(30px, 4.2vw, 50px);
+    --hero-title-size: clamp(38px, 5.4vw, 66px);
   }
 
   .hero-sticky {
     min-height: 65svh;
   }
 }
+

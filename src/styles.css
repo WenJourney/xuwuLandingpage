@@ -6,9 +6,7 @@
    高度:  ≤720 矮屏  /  ≥900 高屏  (均需配合 min-width:641)
    首屏:  手机档固定高度(不随视口伸缩):320–399 → 500px + 小手机;400–640 → 600px + 大手机
           (手机尺寸/露出分界也对齐到 400,见 App.tsx)
-   Hero:  竖屏偏方(aspect≤3/2 且 orientation:portrait) → 短 65vh hero + 手机露出
-          横向矮屏(aspect≤3/2 且 宽>高)              → 整屏 hero + 手机正常露出(落回宽度档)
-          其余                                        → 整屏 hero
+   Hero:  >640 一律整屏 hero + 手机正常露出(偏方屏不再缩短,落回宽度档)
    ============================================================ */
 
 :root {
@@ -323,7 +321,10 @@ h1 {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: var(--phone-bottom);
+  /* 锚定到「首屏可见区」底部:hero 高度与视口高度取较小者。
+     hero ≤ 视口时等同于原来的 bottom 定位;hero > 视口时改贴视口底,避免手机跑到屏外。 */
+  top: calc(min(100%, 100svh) - var(--phone-stage-height) - var(--phone-bottom));
+  bottom: auto;
   z-index: 4;
   width: var(--phone-stage-width);
   height: var(--phone-stage-height);
@@ -780,6 +781,19 @@ h3 {
   }
 }
 
+/* 宽度 ~870(840–900):首页高度固定 900px;手机上移(加大 --phone-bottom)以落进可见区。
+   放在高度断点之后,确保 --phone-bottom 不被 max-height:720 覆盖。实验性,数值可调。 */
+@media (min-width: 840px) and (max-width: 900px) {
+  :root {
+    --hero-lock-height: 900px;
+    --phone-bottom: 410px;
+  }
+
+  .hero-sticky {
+    min-height: 900px;
+  }
+}
+
 @media (max-height: 720px) and (max-width: 640px) {
   :root {
     --hero-sticky-top: 96px;
@@ -790,18 +804,5 @@ h3 {
   }
 }
 
-/* 竖屏 / iPad 竖屏(宽高比 ≤ 3:2 且竖向):Hero 缩短 + 手机露出。
-   横向矮屏(宽>高)不走这里,保持默认整屏 hero。 */
-@media (min-width: 641px) and (max-aspect-ratio: 3 / 2) and (orientation: portrait) {
-  :root {
-    --hero-lock-height: 65vh;
-    --phone-bottom: 0px;
-    --hero-sticky-top: clamp(80px, 10vh, 150px);
-    --hero-title-size: clamp(38px, 5.4vw, 66px);
-  }
-
-  .hero-sticky {
-    min-height: 65svh;
-  }
-}
+/* 偏方屏(宽高比 ≤ 3:2)不再缩短 hero:所有 >640 尺寸统一为默认整屏首页。 */
 

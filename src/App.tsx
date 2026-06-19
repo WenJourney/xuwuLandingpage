@@ -217,9 +217,6 @@ function Hero() {
         <motion.div className="hero-app-content" style={{ opacity: heroContentOpacity }}>
           <AppIcon />
           <motion.div variants={heroTextItems} initial="hidden" animate="visible">
-            <motion.p className="hero-kicker" variants={heroTextItem}>
-              精致生活从序物开始
-            </motion.p>
             <motion.p className="hero-cn-title" variants={heroTextItem}>
               美，自有序
             </motion.p>

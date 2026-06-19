@@ -220,9 +220,11 @@ function Hero() {
             <motion.p className="hero-kicker" variants={heroTextItem}>
               精致生活从序物开始
             </motion.p>
+            <motion.p className="hero-cn-title" variants={heroTextItem}>
+              美，自有序
+            </motion.p>
             <motion.h1 className="hero-app-title" variants={heroTextItem}>
-              <span>Begin Your Refined</span>
-              <span>Life with Xuwu</span>
+              <span>THE ORDER OF BEAUTY</span>
             </motion.h1>
             <motion.p className="hero-app-copy hero-app-copy-cn" variants={heroTextItem}>
               专为亚洲女性打造精致生活

@@ -251,6 +251,16 @@ h1 {
   line-height: 0.96;
 }
 
+.hero-cn-title {
+  margin: 0 0 14px;
+  font-family: "zcoolwenyiti", var(--font-cn);
+  font-size: clamp(34px, 4.6vw, 62px);
+  font-weight: 400;
+  color: #001012;
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+}
+
 .hero-app-title {
   display: flex;
   flex-direction: column;
@@ -617,7 +627,7 @@ h3 {
     --section-y: 64px;
     --section-x: 18px;
     --section-max: 100%;
-    --hero-lock-height: 500px;
+    --hero-lock-height: max(500px, 100svh);
     --hero-sticky-top: 116px;
     --hero-title-size: clamp(32px, 10.2vw, 42px);
     --hero-kicker-size: 15px;
@@ -633,7 +643,7 @@ h3 {
   }
 
   .hero-sticky {
-    min-height: 500px;
+    min-height: max(500px, 100svh);
   }
 
   .site-header {
@@ -741,12 +751,12 @@ h3 {
    --phone-width 的 43vw 与 App.tsx getResponsivePhoneWidth 的 0.43 同步。 */
 @media (min-width: 400px) and (max-width: 640px) {
   :root {
-    --hero-lock-height: 600px;
+    --hero-lock-height: max(600px, 100svh);
     --phone-width: clamp(168px, 43vw, 185px);
   }
 
   .hero-sticky {
-    min-height: 600px;
+    min-height: max(600px, 100svh);
   }
 }
 
@@ -785,12 +795,12 @@ h3 {
    放在高度断点之后,确保 --phone-bottom 不被 max-height:720 覆盖。实验性,数值可调。 */
 @media (min-width: 840px) and (max-width: 900px) {
   :root {
-    --hero-lock-height: 900px;
+    --hero-lock-height: max(900px, 100svh);
     --phone-bottom: 410px;
   }
 
   .hero-sticky {
-    min-height: 900px;
+    min-height: max(900px, 100svh);
   }
 }
 

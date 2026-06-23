@@ -58,7 +58,9 @@ export function GooeyText({
     let time = performance.now();
     const startAt = time + startDelay * 1000;
     let morph = 0;
-    let cooldown = cooldownTime;
+    // 初始停留设为极小正值:首次启动时间完全由 startDelay 决定(不再叠加一整个 cooldownTime);
+    // 极小正值保证第一次 morph 仍会自增索引、方向正确(中→英)。后续停留正常用 cooldownTime。
+    let cooldown = 0.0001;
     let running = true;
 
     const blurPx = (f: number) => Math.min(8 / f - 8, 50);

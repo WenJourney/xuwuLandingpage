@@ -224,7 +224,7 @@ function Hero() {
                 <GooeyText
                   texts={["美，自有序", "THE ORDER OF BEAUTY"]}
                   color="#001012"
-                  startDelay={1.1}
+                  startDelay={1}
                   fontCn={'"zcoolwenyiti", var(--font-cn)'}
                   textClassName="hero-gooey-title-text"
                 />

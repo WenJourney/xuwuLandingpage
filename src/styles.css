@@ -680,6 +680,10 @@ h3 {
     min-height: 600px;
   }
 
+  .hero-app-content {
+    margin-top: 56px;
+  }
+
   .site-header {
     align-items: flex-start;
     padding: 6px 16px;

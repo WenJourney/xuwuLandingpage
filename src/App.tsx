@@ -65,14 +65,15 @@ type PhoneItem = {
   id: string;
   scale: number;
   zIndex: number;
+  img: string;
 };
 
 const phoneItems: PhoneItem[] = [
-  { id: "phone-1", scale: 0.76, zIndex: 1 },
-  { id: "phone-2", scale: 0.9, zIndex: 2 },
-  { id: "phone-3", scale: 1, zIndex: 5 },
-  { id: "phone-4", scale: 0.9, zIndex: 2 },
-  { id: "phone-5", scale: 0.76, zIndex: 1 },
+  { id: "phone-1", scale: 0.76, zIndex: 1, img: "/assets/phone-1.jpg" },
+  { id: "phone-2", scale: 0.9, zIndex: 2, img: "/assets/phone-2.jpg" },
+  { id: "phone-3", scale: 1, zIndex: 5, img: "/assets/phone-3.jpg" },
+  { id: "phone-4", scale: 0.9, zIndex: 2, img: "/assets/phone-4.jpg" },
+  { id: "phone-5", scale: 0.76, zIndex: 1, img: "/assets/phone-5.jpg" },
 ];
 
 const MIN_LAYOUT_WIDTH = 390;
@@ -172,8 +173,8 @@ function AppIcon() {
   );
 }
 
-function PhoneMockup() {
-  return <Iphone className="magic-iphone" src="/assets/phone-screen.jpg" aria-hidden="true" />;
+function PhoneMockup({ src }: { src: string }) {
+  return <Iphone className="magic-iphone" src={src} aria-hidden="true" />;
 }
 
 function Hero() {
@@ -224,6 +225,7 @@ function Hero() {
                 <GooeyText
                   texts={["美，自有序", "THE ORDER OF BEAUTY"]}
                   color="#001012"
+                  morphTime={1.5}
                   startDelay={1}
                   fontCn={'"zcoolwenyiti", var(--font-cn)'}
                   textClassName="hero-gooey-title-text"
@@ -260,7 +262,7 @@ function Hero() {
                 zIndex: phone.zIndex,
               }}
             >
-              <PhoneMockup />
+              <PhoneMockup src={phone.img} />
             </motion.div>
           ))}
         </motion.div>

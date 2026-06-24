@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, type Variants } from "framer-motion";
 import { Iphone } from "@/components/ui/iphone";
-import { GooeyText } from "@/components/ui/gooey-text";
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -219,19 +218,12 @@ function Hero() {
         <motion.div className="hero-app-content" style={{ opacity: heroContentOpacity }}>
           <AppIcon />
           <motion.div variants={heroTextItems} initial="hidden" animate="visible">
-            <motion.div className="hero-gooey-title" variants={heroTextItem}>
-              <h1 className="hero-gooey-title-sr">美，自有序 — THE ORDER OF BEAUTY</h1>
-              <div aria-hidden="true" style={{ width: "100%", height: "100%" }}>
-                <GooeyText
-                  texts={["美，自有序", "THE ORDER OF BEAUTY"]}
-                  color="#001012"
-                  morphTime={1.5}
-                  startDelay={1}
-                  fontCn={'"zcoolwenyiti", var(--font-cn)'}
-                  textClassName="hero-gooey-title-text"
-                />
-              </div>
-            </motion.div>
+            <motion.p className="hero-cn-title" variants={heroTextItem}>
+              美，自有序
+            </motion.p>
+            <motion.h1 className="hero-app-title" variants={heroTextItem}>
+              <span>THE ORDER OF BEAUTY</span>
+            </motion.h1>
             <motion.p className="hero-app-copy hero-app-copy-cn" variants={heroTextItem}>
               专为亚洲女性打造精致生活
             </motion.p>

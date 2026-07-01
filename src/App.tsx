@@ -233,10 +233,10 @@ function Hero() {
               </div>
             </motion.div>
             <motion.p className="hero-app-copy hero-app-copy-cn" variants={heroTextItem}>
-              专为亚洲女性打造精致生活
+              专为亚洲生活方式而来
             </motion.p>
             <motion.p className="hero-app-copy hero-app-copy-en" variants={heroTextItem}>
-              Curated for Asian Women’s Lifestyle
+              Created for the Asian Lifestyle
             </motion.p>
           </motion.div>
         </motion.div>
